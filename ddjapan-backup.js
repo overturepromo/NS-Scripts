@@ -116,42 +116,6 @@ function sendSO() {
           ExtraCharges:0
         };
 
-        //What am i doing? This seems wrong... yup it broke the server. 
-        //So these records are based of results going through this for loop. should I get rid of this and override?
-        //We are bulding json payloads so... I'm stilling getting 1000's of results based off the script.
-        //Should we get out of this loop? Or what are we sending since we have the send function is commented out. 
-        //God help me. 
-        var primaryPayload = {
-          "tranid": "SO3581790",
-          "internalid": "50110886",
-          "name": "Jacob Goodall",
-          "email": "jacobg@overturepromo.com",
-          "shipaddressee": "Overture Promotions Inc.",
-          "shipattention": "Jacob Goodall",
-          "shipphone": "8475736080",
-          "shipaddr1": "800 S Northpoint Blvd",
-          "shipaddr2": "",
-          "shipaddr3": "",
-          "shipcity": "Waukegan",
-          "shipstate": "IL",
-          "shipzip": "60085",
-          "shipcountry": "US",
-          "items": [
-            {
-              "sku": "DDJP001",
-              "quantity": "5"
-            },
-            {
-              "sku": "DDJP002",
-              "quantity": "1"
-            },
-            {
-              "sku": "DDJP003",
-              "quantity": "1"
-            }
-          ]
-        }
-
         var backorderedLines = {lines:[]};
         
         rec = nlapiLoadRecord('salesorder',results[i].getId());
