@@ -20,8 +20,8 @@ function sendSO() {
   //define header object for nlapiRequestURL() call
   var header = {
     'Cache-Control': 'no-cache',
-    'Content-Type': 'application/json',
-    'Authorization': '9661B173-E407-4793-9BC3-E7896554DAE6'
+    'Content-Type': 'application/json'
+    // 'Authorization': '9661B173-E407-4793-9BC3-E7896554DAE6'
   };
 
   //DoorDash Japan Orders to Send via Integration
@@ -176,19 +176,19 @@ function sendSO() {
           rec.setFieldValue('custbody_ariba_cxml_message', JSON.stringify(payload));
           nlapiLogExecution('AUDIT', 'Outbound Payload', JSON.stringify(payload));
 
-          //   var response = nlapiRequestURL(
-          //     'http://api-middleware.bdynamiclogistics.com.au/api/Orders',
-          //     JSON.stringify(payload),
-          //     header,
-          //     null,
-          //     'POST'
-          //   );
+            var response = nlapiRequestURL(
+              'https://544356-sb2.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=1745&deploy=1',
+              JSON.stringify(payload),
+              header,
+              null,
+              'POST'
+            );
 
-          //   var resCode = response.getCode();
-          //   var resBody = response.getBody();
-          //   var resString = resCode+'\n'+JSON.stringify(resBody);
+            var resCode = response.getCode();
+            var resBody = response.getBody();
+            var resString = resCode+'\n'+JSON.stringify(resBody);
 
-          //   nlapiLogExecution('AUDIT','WMS Response',resString);
+            nlapiLogExecution('AUDIT','WMS Response',resString);
 
           //   if(resCode === 200) {
 
