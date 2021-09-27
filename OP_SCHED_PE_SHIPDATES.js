@@ -52,9 +52,8 @@ function changeDates() {
                 //Create a PE (production embroidery) Record
                 var peRecord = nlapiCreateRecord ('customrecordproduction_embroidery' , {recordmode:'dynamic'} );
 
-                //Set the ‘Created From Sales Order’ field on the PE record to the related sales order
-                peRecord.setFieldValue('custrecordcreatedfromso_prod_emb',trainID);
-                //nlapiSubmitField('customrecordproduction_embroidery', internalID, 'custrecordcreatedfromso_prod_emb', trainID);              
+                //Set the ‘Created From Sales Order’ field on the PE record to the related sales order.. It HATES everything I've tried.. 
+                peRecord.setFieldText('custrecordcreatedfromso_prod_emb', "Sales Order #" + trainID);
 
                 //Set the Production Start & Production Complete by Date to equal the Ship Date field I have exposed on the saved search 
                 //a.	In the event the Ship Date field is empty, then the default Dates should be Today + 7 (but not fall on a weekend).
@@ -63,9 +62,9 @@ function changeDates() {
                     var weekFromtoday = nlapiAddDays(todayDate, 7);
                     var dateComplete = '';
                     if(weekFromtoday.getDay() == 6){
-                        dateComplete = nlapiAddDays(todayDate, 5)
-                    }else if (weekFromtoday.getDay() == 0){
                         dateComplete = nlapiAddDays(todayDate, 6)
+                    }else if (weekFromtoday.getDay() == 0){
+                        dateComplete = nlapiAddDays(todayDate, 5)
                     }else {
                         dateComplete = nlapiAddDays(todayDate, 7)
                     }
@@ -75,13 +74,9 @@ function changeDates() {
                 dateComplete = findCompleteDate();
 
                 if(shipDate){
-                    //nlapiSubmitField('customrecordproduction_embroidery', internalID, 'custrecordproduction_emb_sche_start_date', shipDate);
-                    //nlapiSubmitField('customrecordproduction_embroidery', internalID, 'custrecordproduction_emb_complet_by_date', shipDate);
                     peRecord.setFieldValue('custrecordproduction_emb_sche_start_date', shipDate);
                     peRecord.setFieldValue('custrecordproduction_emb_complet_by_date', shipDate);
                 }else {
-                    //nlapiSubmitField('customrecordproduction_embroidery', internalID, 'custrecordproduction_emb_sche_start_date', dateComplete);
-                    //nlapiSubmitField('customrecordproduction_embroidery', internalID, 'custrecordproduction_emb_complet_by_date', dateComplete);
                     peRecord.setFieldValue('custrecordproduction_emb_sche_start_date', dateComplete);
                     peRecord.setFieldValue('custrecordproduction_emb_complet_by_date', dateComplete);
                 }
