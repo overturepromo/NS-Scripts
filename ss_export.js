@@ -1,3 +1,5 @@
+//standard salesorder serach example
+
 var salesorderSearch = nlapiSearchRecord("salesorder",null,
 [
    ["datecreated","after","lastyeartodate"], 
