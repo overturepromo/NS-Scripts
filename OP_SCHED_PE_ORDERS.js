@@ -7,7 +7,7 @@
 function checkBox() {
 
     //PE Orders Created from SO Saved Search
-    var results = nlapiSearchRecord('salesorder', 'customsearch4813');
+    var results = nlapiSearchRecord('salesorder', 'customsearch4813');    
 
     if (results) {
 
